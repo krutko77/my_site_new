@@ -40,7 +40,6 @@ function initSliders() {
 			spaceBetween: 45,
 			autoHeight: true,
 			speed: 800,
-			
 
 			//touchRatio: 0,
 			//simulateTouch: false,
@@ -131,11 +130,9 @@ function initSlidersScroll() {
 	}
 }
 
-// window.addEventListener("load", function (e) {
-// 	// Запуск ініціалізації слайдерів
-// 	initSliders();
-// 	// Запуск ініціалізації скролла на базі слайдера (за класом swiper_scroll)
-// 	// initSlidersScroll();
-// });
-
-initSliders();
+window.addEventListener("load", function (e) {
+	// Запуск ініціалізації слайдерів
+	initSliders();
+	// Запуск ініціалізації скролла на базі слайдера (за класом swiper_scroll)
+	// initSlidersScroll();
+});

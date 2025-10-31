@@ -1,58 +1,41 @@
-// // Подключение функционала "Чертогов Фрилансера"
-// // Подключение списка активных модулей
+// Підключення функціоналу "Чертоги Фрілансера"
+// Підключення списку активних модулів
 import { flsModules } from "../modules.js";
-// Вспомогательные функции
+// Допоміжні функції
 import { isMobile, _slideUp, _slideDown, _slideToggle, FLS } from "../functions.js";
-// Модуль прокрутки к блоку
+// Модуль прокручування до блоку
 import { gotoBlock } from "../scroll/gotoblock.js";
 //================================================================================================================================================================================================================================================================================================================================
 
 /*
-Документация: https://template.fls.guru/template-docs/rabota-s-formami.html
+Документація: https://template.fls.guru/template-docs/rabota-s-formami.html
 */
 
-// Работа с полями формы. Добавление классов, работа с placeholder
-export function formFieldsInit(options = { viewPass: false }) {
-	// Если включено, добавляем функционал "скрыть плейсходлер при фокусе"
-	const formFields = document.querySelectorAll('input[placeholder],textarea[placeholder]');
-	if (formFields.length) {
-		formFields.forEach(formField => {
-			if (!formField.hasAttribute('data-placeholder-nohide')) {
-				formField.dataset.placeholder = formField.placeholder;
-			}
-		});
-	}
+// Робота із полями форми.
+export function formFieldsInit(options = { viewPass: false, autoHeight: false }) {
 	document.body.addEventListener("focusin", function (e) {
 		const targetElement = e.target;
 		if ((targetElement.tagName === 'INPUT' || targetElement.tagName === 'TEXTAREA')) {
-			if (targetElement.dataset.placeholder) {
-				targetElement.placeholder = '';
-			}
 			if (!targetElement.hasAttribute('data-no-focus-classes')) {
 				targetElement.classList.add('_form-focus');
 				targetElement.parentElement.classList.add('_form-focus');
 			}
 			formValidate.removeError(targetElement);
+			targetElement.hasAttribute('data-validate') ? formValidate.removeError(targetElement) : null;
 		}
 	});
 	document.body.addEventListener("focusout", function (e) {
 		const targetElement = e.target;
 		if ((targetElement.tagName === 'INPUT' || targetElement.tagName === 'TEXTAREA')) {
-			if (targetElement.dataset.placeholder) {
-				targetElement.placeholder = targetElement.dataset.placeholder;
-			}
 			if (!targetElement.hasAttribute('data-no-focus-classes')) {
 				targetElement.classList.remove('_form-focus');
 				targetElement.parentElement.classList.remove('_form-focus');
 			}
-			// Моментальная валидация
-			if (targetElement.hasAttribute('data-validate')) {
-				formValidate.validateInput(targetElement);
-			}
+			// Миттєва валідація
+			targetElement.hasAttribute('data-validate') ? formValidate.validateInput(targetElement) : null;
 		}
 	});
-
-	// Если включено, добавляем функционал "Показать пароль"
+	// Якщо увімкнено, додаємо функціонал "Показати пароль"
 	if (options.viewPass) {
 		document.addEventListener("click", function (e) {
 			let targetElement = e.target;
@@ -63,8 +46,30 @@ export function formFieldsInit(options = { viewPass: false }) {
 			}
 		});
 	}
+	// Якщо увімкнено, додаємо функціонал "Автовисота"
+	if (options.autoHeight) {
+		const textareas = document.querySelectorAll('textarea[data-autoheight]');
+		if (textareas.length) {
+			textareas.forEach(textarea => {
+				const startHeight = textarea.hasAttribute('data-autoheight-min') ?
+					Number(textarea.dataset.autoheightMin) : Number(textarea.offsetHeight);
+				const maxHeight = textarea.hasAttribute('data-autoheight-max') ?
+					Number(textarea.dataset.autoheightMax) : Infinity;
+				setHeight(textarea, Math.min(startHeight, maxHeight))
+				textarea.addEventListener('input', () => {
+					if (textarea.scrollHeight > startHeight) {
+						textarea.style.height = `auto`;
+						setHeight(textarea, Math.min(Math.max(textarea.scrollHeight, startHeight), maxHeight));
+					}
+				});
+			});
+			function setHeight(textarea, height) {
+				textarea.style.height = `${height}px`;
+			}
+		}
+	}
 }
-// Валидация форм
+// Валідація форм
 export let formValidate = {
 	getErrors(form) {
 		let error = 0;
@@ -149,8 +154,8 @@ export let formValidate = {
 		return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
 	}
 }
-/* Отправка форм */
-export function formSubmit(options = { validate: true }) {
+/* Відправлення форм */
+export function formSubmit() {
 	const forms = document.forms;
 	if (forms.length) {
 		for (const form of forms) {
@@ -168,7 +173,7 @@ export function formSubmit(options = { validate: true }) {
 		const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
 		if (error === 0) {
 			const ajax = form.hasAttribute('data-ajax');
-			if (ajax) { // Если режим ajax
+			if (ajax) { // Якщо режим ajax
 				e.preventDefault();
 				const formAction = form.getAttribute('action') ? form.getAttribute('action').trim() : '#';
 				const formMethod = form.getAttribute('method') ? form.getAttribute('method').trim() : 'GET';
@@ -184,77 +189,87 @@ export function formSubmit(options = { validate: true }) {
 					form.classList.remove('_sending');
 					formSent(form, responseResult);
 				} else {
-					alert("Ошибка");
+					alert("Помилка");
 					form.classList.remove('_sending');
 				}
-			} else if (form.hasAttribute('data-dev')) {	// Если режим разработки
+			} else if (form.hasAttribute('data-dev')) {	// Якщо режим розробки
 				e.preventDefault();
 				formSent(form);
 			}
 		} else {
 			e.preventDefault();
-			const formError = form.querySelector('._form-error');
-			if (formError && form.hasAttribute('data-goto-error')) {
-				gotoBlock(formError, true, 1000);
+			if (form.querySelector('._form-error') && form.hasAttribute('data-goto-error')) {
+				const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : '._form-error';
+				gotoBlock(formGoToErrorClass, true, 1000);
 			}
 		}
 	}
-	// Действия после отправки формы
+	// Дії після надсилання форми
 	function formSent(form, responseResult = ``) {
-		// Создаем событие отправки формы
+		// Створюємо подію відправлення форми
 		document.dispatchEvent(new CustomEvent("formSent", {
 			detail: {
 				form: form
 			}
 		}));
-		// Показываем попап, если подключен модуль попапов 
-		// и для формы указана настройка
+		// Показуємо попап, якщо підключено модуль попапів 
+		// та для форми вказано налаштування
 		setTimeout(() => {
 			if (flsModules.popup) {
 				const popup = form.dataset.popupMessage;
 				popup ? flsModules.popup.open(popup) : null;
 			}
 		}, 0);
-		// Очищаем форму
+		// Очищуємо форму
 		formValidate.formClean(form);
-		// Сообщаем в консоль
-		formLogging(`Форма отправлена!`);
+		// Повідомляємо до консолі
+		formLogging(`Форму відправлено!`);
 	}
 	function formLogging(message) {
-		FLS(`[Формы]: ${message}`);
+		FLS(`[Форми]: ${message}`);
 	}
 }
-/* Модуь формы "колличество" */
+/* Модуль форми "кількість" */
 export function formQuantity() {
 	document.addEventListener("click", function (e) {
 		let targetElement = e.target;
-		if (targetElement.closest('.quantity__button')) {
-			let value = parseInt(targetElement.closest('.quantity').querySelector('input').value);
-			if (targetElement.classList.contains('quantity__button_plus')) {
+		if (targetElement.closest('[data-quantity-plus]') || targetElement.closest('[data-quantity-minus]')) {
+			const valueElement = targetElement.closest('[data-quantity]').querySelector('[data-quantity-value]');
+			let value = parseInt(valueElement.value);
+			if (targetElement.hasAttribute('data-quantity-plus')) {
 				value++;
+				if (+valueElement.dataset.quantityMax && +valueElement.dataset.quantityMax < value) {
+					value = valueElement.dataset.quantityMax;
+				}
 			} else {
 				--value;
-				if (value < 1) value = 1;
+				if (+valueElement.dataset.quantityMin) {
+					if (+valueElement.dataset.quantityMin > value) {
+						value = valueElement.dataset.quantityMin;
+					}
+				} else if (value < 1) {
+					value = 1;
+				}
 			}
-			targetElement.closest('.quantity').querySelector('input').value = value;
+			targetElement.closest('[data-quantity]').querySelector('[data-quantity-value]').value = value;
 		}
 	});
 }
-/* Модуь звездного рейтинга */
+/* Модуль зіркового рейтингу */
 export function formRating() {
 	const ratings = document.querySelectorAll('.rating');
 	if (ratings.length > 0) {
 		initRatings();
 	}
-	// Основная функция
+	// Основна функція
 	function initRatings() {
 		let ratingActive, ratingValue;
-		// "Бегаем" по всем рейтингам на странице
+		// "Бігаємо" по всіх рейтингах на сторінці
 		for (let index = 0; index < ratings.length; index++) {
 			const rating = ratings[index];
 			initRating(rating);
 		}
-		// Инициализируем конкретный рейтинг
+		// Ініціалізуємо конкретний рейтинг
 		function initRating(rating) {
 			initRatingVars(rating);
 
@@ -264,40 +279,40 @@ export function formRating() {
 				setRating(rating);
 			}
 		}
-		// Инициализайция переменных
+		// Ініціалізація змінних
 		function initRatingVars(rating) {
 			ratingActive = rating.querySelector('.rating__active');
 			ratingValue = rating.querySelector('.rating__value');
 		}
-		// Изменяем ширину активных звезд
+		// Змінюємо ширину активних зірок
 		function setRatingActiveWidth(index = ratingValue.innerHTML) {
 			const ratingActiveWidth = index / 0.05;
 			ratingActive.style.width = `${ratingActiveWidth}%`;
 		}
-		// Возможность указать оценку 
+		// Можливість вказати оцінку
 		function setRating(rating) {
 			const ratingItems = rating.querySelectorAll('.rating__item');
 			for (let index = 0; index < ratingItems.length; index++) {
 				const ratingItem = ratingItems[index];
 				ratingItem.addEventListener("mouseenter", function (e) {
-					// Обновление переменных
+					// Оновлення змінних
 					initRatingVars(rating);
-					// Обновление активных звезд
+					// Оновлення активних зірок
 					setRatingActiveWidth(ratingItem.value);
 				});
 				ratingItem.addEventListener("mouseleave", function (e) {
-					// Обновление активных звезд
+					// Оновлення активних зірок
 					setRatingActiveWidth();
 				});
 				ratingItem.addEventListener("click", function (e) {
-					// Обновление переменных
+					// Оновлення змінних
 					initRatingVars(rating);
 
 					if (rating.dataset.ajax) {
-						// "Отправить" на сервер
+						// "Надіслати" на сервер
 						setRatingValue(ratingItem.value, rating);
 					} else {
-						// Отобразить указанную оцнку
+						// Відобразити вказану оцінку
 						ratingValue.innerHTML = index + 1;
 						setRatingActiveWidth();
 					}
@@ -308,7 +323,7 @@ export function formRating() {
 			if (!rating.classList.contains('rating_sending')) {
 				rating.classList.add('rating_sending');
 
-				// Отправика данных (value) на сервер
+				// Надсилання даних (value) на сервер
 				let response = await fetch('rating.json', {
 					method: 'GET',
 
@@ -323,18 +338,18 @@ export function formRating() {
 				if (response.ok) {
 					const result = await response.json();
 
-					// Получаем новый рейтинг
+					// Отримуємо новий рейтинг
 					const newRating = result.newRating;
 
-					// Вывод нового среднего результата
+					// Виведення нового середнього результату
 					ratingValue.innerHTML = newRating;
 
-					// Обновление активных звезд
+					// Оновлення активних зірок
 					setRatingActiveWidth();
 
 					rating.classList.remove('rating_sending');
 				} else {
-					alert("Ошибка");
+					alert("Помилка");
 
 					rating.classList.remove('rating_sending');
 				}

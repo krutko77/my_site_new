@@ -16,7 +16,7 @@
 	$mail->Host       = 'mailbe05.hoster.by';                     //Set the SMTP server to send through
 	$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
 	$mail->Username   = 'postmaster@webkrutko.by';                     //SMTP username
-	$mail->Password   = 'certina77';                               //SMTP password
+	$mail->Password   = 'Certina#7779';                               //SMTP password
 	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 	$mail->Port       = 465;                 
 	

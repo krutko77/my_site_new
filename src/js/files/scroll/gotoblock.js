@@ -1,11 +1,11 @@
-// Подключение функционала "Чертогов Фрилансера"
+// Підключення функціоналу "Чертоги Фрілансера"
 import { isMobile, menuClose, getHash, FLS } from "../functions.js";
-// Подключение дополнения для увеличения возможностей
-// Документация: https://github.com/cferdinandi/smooth-scroll
-import SmoothScroll from 'smooth-scroll';
+// Підключення доповнення для збільшення можливостей
+// Документація: https://github.com/cferdinandi/smooth-scroll
+// import SmoothScroll from 'smooth-scroll';
 //==============================================================================================================================================================================================================================================================================================================================
 
-// Модуль плавной проктутки к блоку
+// Модуль плавної проктутки до блоку
 export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
 	const targetBlockElement = document.querySelector(targetBlock);
 	if (targetBlockElement) {
@@ -13,7 +13,18 @@ export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 
 		let headerItemHeight = 0;
 		if (noHeader) {
 			headerItem = 'header.header';
-			headerItemHeight = document.querySelector(headerItem).offsetHeight;
+			const headerElement = document.querySelector(headerItem);
+			if (!headerElement.classList.contains('_header-scroll')) {
+				headerElement.style.cssText = `transition-duration: 0s;`;
+				headerElement.classList.add('_header-scroll');
+				headerItemHeight = headerElement.offsetHeight;
+				headerElement.classList.remove('_header-scroll');
+				setTimeout(() => {
+					headerElement.style.cssText = ``;
+				}, 0);
+			} else {
+				headerItemHeight = headerElement.offsetHeight;
+			}
 		}
 		let options = {
 			speedAsDuration: true,
@@ -22,14 +33,14 @@ export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 
 			offset: offsetTop,
 			easing: 'easeOutQuad',
 		};
-		// Закрываем меню, если оно открыто
+		// Закриваємо меню, якщо воно відкрите
 		document.documentElement.classList.contains("menu-open") ? menuClose() : null;
 
 		if (typeof SmoothScroll !== 'undefined') {
-			// Прокрутка с использованием дополнения
+			// Прокручування з використанням доповнення
 			new SmoothScroll().animateScroll(targetBlockElement, '', options);
 		} else {
-			// Прокрутка стандартными средствами
+			// Прокручування стандартними засобами
 			let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
 			targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
 			targetBlockElementPosition = offsetTop ? targetBlockElementPosition - offsetTop : targetBlockElementPosition;
@@ -38,8 +49,8 @@ export let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 
 				behavior: "smooth"
 			});
 		}
-		FLS(`[gotoBlock]: Юхуу...едем к ${targetBlock}`);
+		FLS(`[gotoBlock]: Юхуу...їдемо до ${targetBlock}`);
 	} else {
-		FLS(`[gotoBlock]: Ой ой..Такого блока нет на странице: ${targetBlock}`);
+		FLS(`[gotoBlock]: Йой... Такого блоку немає на сторінці: ${targetBlock}`);
 	}
 };

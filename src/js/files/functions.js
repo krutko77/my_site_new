@@ -43,18 +43,6 @@ export function setHash(hash) {
 	hash = hash ? `#${hash}` : window.location.href.split('#')[0];
 	history.pushState('', '', hash);
 }
-// Облік плаваючої панелі на мобільних пристроях при 100vh
-export function fullVHfix() {
-	const fullScreens = document.querySelectorAll('[data-fullscreen]');
-	if (fullScreens.length && isMobile.any()) {
-		window.addEventListener('resize', fixHeight);
-		function fixHeight() {
-			let vh = window.innerHeight * 0.01;
-			document.documentElement.style.setProperty('--vh', `${vh}px`);
-		}
-		fixHeight();
-	}
-}
 // Допоміжні модулі плавного розкриття та закриття об'єкта ======================================================================================================================================================================
 export let _slideUp = (target, duration = 500, showmore = 0) => {
 	if (!target.classList.contains('_slide')) {
@@ -217,7 +205,7 @@ export function spollers() {
 		function initSpollerBody(spollersBlock, hideSpollerBody = true) {
 			let spollerItems = spollersBlock.querySelectorAll('details');
 			if (spollerItems.length) {
-				spollerItems = Array.from(spollerItems).filter(item => item.closest('[data-spollers]') === spollersBlock);
+				//spollerItems = Array.from(spollerItems).filter(item => item.closest('[data-spollers]') === spollersBlock);
 				spollerItems.forEach(spollerItem => {
 					let spollerTitle = spollerItem.querySelector('summary');
 					if (hideSpollerBody) {
@@ -240,39 +228,41 @@ export function spollers() {
 		}
 		function setSpollerAction(e) {
 			const el = e.target;
-			if (el.closest('summary') && el.closest('[data-spollers]').classList.contains('_spoller-init')) {
-				const spollerTitle = el.closest('summary');
-				const spollerBlock = spollerTitle.closest('details');
-				const spollersBlock = spollerTitle.closest('[data-spollers]');
-				const oneSpoller = spollersBlock.hasAttribute('data-one-spoller');
-				const scrollSpoller = spollerBlock.hasAttribute('data-spoller-scroll');
-				const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
-				if (!spollersBlock.querySelectorAll('._slide').length) {
-					if (oneSpoller && !spollerBlock.open) {
-						hideSpollersBody(spollersBlock);
-					}
+			if (el.closest('summary') && el.closest('[data-spollers]')) {
+				e.preventDefault();
+				if (el.closest('[data-spollers]').classList.contains('_spoller-init')) {
+					const spollerTitle = el.closest('summary');
+					const spollerBlock = spollerTitle.closest('details');
+					const spollersBlock = spollerTitle.closest('[data-spollers]');
+					const oneSpoller = spollersBlock.hasAttribute('data-one-spoller');
+					const scrollSpoller = spollerBlock.hasAttribute('data-spoller-scroll');
+					const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+					if (!spollersBlock.querySelectorAll('._slide').length) {
+						if (oneSpoller && !spollerBlock.open) {
+							hideSpollersBody(spollersBlock);
+						}
 
-					!spollerBlock.open ? spollerBlock.open = true : setTimeout(() => { spollerBlock.open = false }, spollerSpeed);
+						!spollerBlock.open ? spollerBlock.open = true : setTimeout(() => { spollerBlock.open = false }, spollerSpeed);
 
-					spollerTitle.classList.toggle('_spoller-active');
-					_slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
+						spollerTitle.classList.toggle('_spoller-active');
+						_slideToggle(spollerTitle.nextElementSibling, spollerSpeed);
 
-					if (scrollSpoller && spollerTitle.classList.contains('_spoller-active')) {
-						const scrollSpollerValue = spollerBlock.dataset.spollerScroll;
-						const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
-						const scrollSpollerNoHeader = spollerBlock.hasAttribute('data-spoller-scroll-noheader') ? document.querySelector('.header').offsetHeight : 0;
+						if (scrollSpoller && spollerTitle.classList.contains('_spoller-active')) {
+							const scrollSpollerValue = spollerBlock.dataset.spollerScroll;
+							const scrollSpollerOffset = +scrollSpollerValue ? +scrollSpollerValue : 0;
+							const scrollSpollerNoHeader = spollerBlock.hasAttribute('data-spoller-scroll-noheader') ? document.querySelector('.header').offsetHeight : 0;
 
-						//setTimeout(() => {
-						window.scrollTo(
-							{
-								top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
-								behavior: "smooth",
-							}
-						);
-						//}, spollerSpeed);
+							//setTimeout(() => {
+							window.scrollTo(
+								{
+									top: spollerBlock.offsetTop - (scrollSpollerOffset + scrollSpollerNoHeader),
+									behavior: "smooth",
+								}
+							);
+							//}, spollerSpeed);
+						}
 					}
 				}
-				e.preventDefault();
 			}
 			// Закриття при кліку поза спойлером
 			if (!el.closest('[data-spollers]')) {
@@ -366,8 +356,8 @@ export function tabs() {
 			tabsActiveTitle ? tabsActiveTitle.classList.remove('_tab-active') : null;
 		}
 		if (tabsContent.length) {
-			tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
-			tabsTitles = Array.from(tabsTitles).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			//tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			//tabsTitles = Array.from(tabsTitles).filter(item => item.closest('[data-tabs]') === tabsBlock);
 			tabsContent.forEach((tabsContentItem, index) => {
 				tabsTitles[index].setAttribute('data-tabs-title', '');
 				tabsContentItem.setAttribute('data-tabs-item', '');
@@ -674,8 +664,8 @@ export function getDigFromString(item) {
 	return parseInt(item.replace(/[^\d]/g, ''))
 }
 // Форматування цифр типу 100 000 000
-export function getDigFormat(item) {
-	return item.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1 ");
+export function getDigFormat(item, sepp = ' ') {
+	return item.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, `$1${sepp}`);
 }
 // Прибрати клас з усіх елементів масиву
 export function removeClasses(array, className) {
