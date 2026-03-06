@@ -1,17 +1,13 @@
 //projects
 .projects {
-    padding: 100px 0 40px;
+   padding: 90px 0 90px;
 
    @media (max-width: $tablet) {
-      padding: 70px 0 25px;
-   }
-
-   @media (max-width: $tablet) and (min-aspect-ratio: 1024/600) {
-      padding: 40px 0 25px;
+      padding: 70px 0 70px;
    }
 
    @media (max-width: $mobileSmall) {
-      padding: 50px 0 15px;
+      padding: 50px 0 50px;
    }
 
    &__wrapper {
@@ -37,7 +33,7 @@
       margin-bottom: 40px;
 
       @media (max-width: $pc) {
-         margin-bottom: calc(20px + 20*((100vw - 320px) / (1260 - 320)));
+         margin-bottom: calc(20px + 20 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 
@@ -47,12 +43,13 @@
       color: $secondButtonColor;
       background-color: transparent;
       border: 2px solid $secondButtonColor;
-      transition: color 0.3s ease,
+      transition:
+         color 0.3s ease,
          background-color 0.3s ease,
          border-color 0.3s ease;
 
       @media (max-width: $pc) {
-         margin-top: calc(30px + 20*((100vw - 320px) / (1260 - 320)));
+         margin-top: calc(30px + 20 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 }
@@ -63,7 +60,7 @@
    gap: 40px;
 
    @media (max-width: $pc) {
-      gap: calc(20px + 20*((100vw - 320px) / (1260 - 320)));
+      gap: calc(20px + 20 * ((100vw - 320px) / (1260 - 320)));
    }
 
    @media (max-width: $tablet) {
@@ -86,7 +83,7 @@
       }
 
       @media (max-width: $pc) {
-         padding-bottom: calc(30px + 5*((100vw - 320px) / (1260 - 320)));
+         padding-bottom: calc(30px + 5 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 
@@ -116,7 +113,7 @@
       margin-bottom: 20px;
 
       @media (max-width: $pc) {
-         margin-bottom: calc(10px + 10*((100vw - 320px) / (1260 - 320)));
+         margin-bottom: calc(10px + 10 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 
@@ -152,8 +149,8 @@
       @include font(15px, 400, 160%);
 
       @media (max-width: $pc) {
-         font-size: calc(13px + 2*((100vw - 320px) / (1260 - 320)));
-         margin-bottom: calc(15px + 10*((100vw - 320px) / (1260 - 320)));
+         font-size: calc(13px + 2 * ((100vw - 320px) / (1260 - 320)));
+         margin-bottom: calc(15px + 10 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 
@@ -163,7 +160,7 @@
       @include font(18px, 400, 140%);
 
       @media (max-width: $pc) {
-         font-size: calc(14px + 4*((100vw - 320px) / (1260 - 320)));
+         font-size: calc(14px + 4 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 
@@ -179,13 +176,12 @@
       transition: color 0.3s ease;
       @include font(16px, 500, 120%);
 
-
       @media (max-width: $pc) {
-         font-size: calc(12px + 4*((100vw - 320px) / (1260 - 320)));
+         font-size: calc(12px + 4 * ((100vw - 320px) / (1260 - 320)));
       }
 
       &::before {
-         content: '';
+         content: "";
          position: absolute;
          top: 115%;
          width: 100%;

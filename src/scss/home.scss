@@ -2,15 +2,18 @@
 .home {
    min-height: 100vh;
    display: flex;
-   padding: 85px 0 40px;
+   padding: 90px 0 90px;
 
-   @media (max-width: $tablet) and (min-aspect-ratio: 1024/600) {
-      padding: 120px 0 40px;
+   @media (max-width: 1500px) {
+      padding: 60px 0 60px;
+   }
+
+   @media (max-width: $tablet) {
+      padding: 120px 0 60px;
    }
 
    @media (max-width: $mobileSmall) {
-      min-height: 100px;
-      padding: 75px 0 20px;
+      padding: 75px 0 40px;
    }
 
    &__wrapper {

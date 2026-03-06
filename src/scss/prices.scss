@@ -1,20 +1,18 @@
 // prices
 .prices {
-   padding: 100px 0 40px;
+   background-image: url("../img/bg-90-70.jpg");
+   background-attachment: fixed;
+   padding: 90px 0 90px;
 
    @media (max-width: $tablet) {
-      padding: 70px 0 25px;
-   }
-
-   @media (max-width: $tablet) and (min-aspect-ratio: 1024/600) {
-      padding: 40px 0 25px;
+      padding: 70px 0 70px;
    }
 
    @media (max-width: $mobileSmall) {
-      padding: 50px 0 15px;
+      padding: 50px 0 50px;
    }
 
-   background: url("../img/bg-prices-95.jpg") center / cover no-repeat fixed;
+   /* background: url("../img/bg-prices-95.jpg") center / cover no-repeat fixed; */
 
    &__wrapper {
       display: flex;

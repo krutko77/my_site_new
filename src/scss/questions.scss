@@ -1,17 +1,13 @@
 //questions
 .questions {
-   padding: 100px 0 40px;
+   padding: 90px 0 90px;
 
    @media (max-width: $tablet) {
-      padding: 70px 0 25px;
-   }
-
-   @media (max-width: $tablet) and (min-aspect-ratio: 1024/600) {
-      padding: 40px 0 25px;
+      padding: 70px 0 70px;
    }
 
    @media (max-width: $mobileSmall) {
-      padding: 50px 0 15px;
+      padding: 50px 0 50px;
    }
 
    &__wrapper {
@@ -33,7 +29,9 @@
       }
    }
 
-   
+   &__content {
+      width: 100%;
+   }   
 }
 
 .spollers {
