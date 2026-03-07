@@ -14,7 +14,7 @@
    position: relative;
 
    @media (max-width: $pc) {
-      font-size: calc(36px + 28*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(36px + 28 * ((100vw - 320px) / (1260 - 320)));
    }
 
    @media (max-width: $tablet) {
@@ -35,8 +35,8 @@
       background-color: $mainColor;
 
       @media (max-width: $pc) {
-         width: calc(115px + 95*((100vw - 320px) / (1260 - 320)));
-         bottom: calc(-15px - 10*((100vw - 320px) / (1260 - 320)));
+         width: calc(115px + 95 * ((100vw - 320px) / (1260 - 320)));
+         bottom: calc(-15px - 10 * ((100vw - 320px) / (1260 - 320)));
       }
 
       @media (max-width: $tablet) {
@@ -54,7 +54,7 @@
    line-height: 110%;
 
    @media (max-width: $pc) {
-      font-size: calc(22px + 6*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(22px + 6 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -63,7 +63,7 @@
    line-height: 110%;
 
    @media (max-width: $pc) {
-      font-size: calc(20px + 4*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(20px + 4 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -71,7 +71,7 @@
    @include font(20px, 400, 150%);
 
    @media (max-width: $pc) {
-      font-size: calc(16px + 4*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(16px + 4 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -79,7 +79,7 @@
    @include font(16px, 400, 140%);
 
    @media (max-width: $pc) {
-      font-size: calc(14px + 2*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(14px + 2 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -87,7 +87,7 @@
    @include font(16px, 400, 170%);
 
    @media (max-width: $pc) {
-      font-size: calc(14px + 2*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(14px + 2 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -95,7 +95,7 @@ ol {
    margin-left: 30px;
 
    @media (max-width: $pc) {
-      margin-left: calc(18px + 12*((100vw - 478px) / (1260 - 478)));
+      margin-left: calc(18px + 12 * ((100vw - 478px) / (1260 - 478)));
    }
 }
 
@@ -120,7 +120,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    @include font(20px, 500, 150%);
 
    @media (max-width: $pc) {
-      font-size: calc(16px + 4*((100vw - 320px) / (1260 - 320)));
+      font-size: calc(16px + 4 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -153,7 +153,8 @@ button:not(.swiper-button-prev, .swiper-button-next),
    will-change: transform;
    opacity: 0;
    transform: scale(0.5);
-   transition: color 0.3s ease,
+   transition:
+      color 0.3s ease,
       background-color 0.3s ease,
       border-color 0.3s ease,
       transform 0.8s ease,
@@ -177,7 +178,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    transition: color 0.3s ease;
 
    &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 94%;
       width: 100%;
@@ -204,7 +205,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    margin-bottom: 30px;
 
    @media (max-width: $pc) {
-      margin-bottom: calc(20px + 10*((100vw - 320px) / (1260 - 320)));
+      margin-bottom: calc(20px + 10 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -212,7 +213,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    margin-bottom: 40px;
 
    @media (max-width: $pc) {
-      margin-bottom: calc(25px + 15*((100vw - 320px) / (1260 - 320)));
+      margin-bottom: calc(25px + 15 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -220,7 +221,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    margin-bottom: 50px;
 
    @media (max-width: $pc) {
-      margin-bottom: calc(30px + 20*((100vw - 320px) / (1260 - 320)));
+      margin-bottom: calc(30px + 20 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -228,7 +229,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    margin-bottom: 60px;
 
    @media (max-width: $pc) {
-      margin-bottom: calc(35px + 25*((100vw - 320px) / (1260 - 320)));
+      margin-bottom: calc(35px + 25 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -236,7 +237,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    margin-bottom: 80px;
 
    @media (max-width: $pc) {
-      margin-bottom: calc(45px + 35*((100vw - 320px) / (1260 - 320)));
+      margin-bottom: calc(45px + 35 * ((100vw - 320px) / (1260 - 320)));
    }
 }
 
@@ -257,7 +258,7 @@ button:not(.swiper-button-prev, .swiper-button-next),
    float: left;
    margin: 0 em(20, 20) em(10, 20) 0;
 
-   @media (max-width:$mobileSmall) {
+   @media (max-width: $mobileSmall) {
       margin: em(15, 20) 0;
    }
 }
@@ -266,15 +267,15 @@ button:not(.swiper-button-prev, .swiper-button-next),
    float: right;
    margin: 0 0 em(10, 20) em(20, 20);
 
-   @media (max-width:$mobileSmall) {
+   @media (max-width: $mobileSmall) {
       margin: em(15, 20) 0;
    }
 }
 
 .clearfix {
    display: flow-root;
-   
-    @media (max-width:$mobileSmall) {
+
+   @media (max-width: $mobileSmall) {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -285,15 +286,15 @@ button:not(.swiper-button-prev, .swiper-button-next),
    width: 100%;
    max-width: 300px;
 
-   @media (max-width:$pc) {
+   @media (max-width: $pc) {
       width: 25%;
    }
 
-   @media (max-width:$tablet) {
+   @media (max-width: $tablet) {
       width: 30%;
    }
 
-   @media (max-width:$mobileSmall) {
+   @media (max-width: $mobileSmall) {
       width: 100%;
    }
 }
@@ -301,17 +302,17 @@ button:not(.swiper-button-prev, .swiper-button-next),
 .img-box-400 {
    width: 100%;
    max-width: 400px;
-	overflow: hidden;
+   overflow: hidden;
 
-   @media (max-width:$pc) {
+   @media (max-width: $pc) {
       width: 30%;
    }
 
-   @media (max-width:$tablet) {
+   @media (max-width: $tablet) {
       width: 35%;
    }
 
-   @media (max-width:$mobileSmall) {
+   @media (max-width: $mobileSmall) {
       width: 100%;
    }
 }
@@ -333,8 +334,8 @@ button:not(.swiper-button-prev, .swiper-button-next),
       fill: $accentColor;
 
       @media (max-width: $pc) {
-         height: calc(30px + 10*((100vw - 320px) / (1260 - 320)));
-         width: calc(30px + 10*((100vw - 320px) / (1260 - 320)));
+         height: calc(30px + 10 * ((100vw - 320px) / (1260 - 320)));
+         width: calc(30px + 10 * ((100vw - 320px) / (1260 - 320)));
       }
    }
 }

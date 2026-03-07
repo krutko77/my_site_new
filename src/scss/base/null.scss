@@ -16,14 +16,16 @@ a:focus,
 a:active {
 	// outline: none;
 }
-button:active, button:focus, 
-summary:active, summary:focus {
+button:active,
+button:focus,
+summary:active,
+summary:focus {
 	outline: none !important;
- }
- button::-moz-focus-inner, 
- summary::-moz-focus-inner {
+}
+button::-moz-focus-inner,
+summary::-moz-focus-inner {
 	border: 0 !important;
- }
+}
 html,
 body {
 	height: 100%;
@@ -78,6 +80,51 @@ h6 {
 	font-size: inherit;
 }
 
+/* Отключает голубую подсветку при тапе */
+button,
+textarea,
+input,
+select,
+a {
+	-webkit-tap-highlight-color: transparent;
+}
+
+a:active,
+a:focus {
+	background: transparent;
+	outline: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+
+button:active,
+button:focus,
+summary:active,
+summary:focus {
+	outline: none !important;
+}
+
+button::-moz-focus-inner,
+summary::-moz-focus-inner {
+	border: 0 !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -87,5 +134,5 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
 }

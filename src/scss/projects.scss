@@ -145,8 +145,8 @@
    &__description {
       margin-bottom: 25px;
       text-align: center;
-
-      @include font(15px, 400, 160%);
+      
+      @include font(15px, 400, 120%);
 
       @media (max-width: $pc) {
          font-size: calc(13px + 2 * ((100vw - 320px) / (1260 - 320)));
