@@ -34,10 +34,6 @@
       line-height: 140%;
    }
 
-   &__sub-subtitle {
-      margin-bottom: 10px;
-   }
-
    &__img-box--1 {
       aspect-ratio: 400/260;
    }
@@ -52,6 +48,11 @@
 
    &__img-box--4 {
       aspect-ratio: 400/288;
+      padding-top: 7px;
+
+      @media (max-width: $mobileSmall) {
+         padding-top: 0;
+      }
    }
 
    &__img {
