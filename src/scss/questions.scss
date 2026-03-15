@@ -25,13 +25,17 @@
       text-align: center;
 
       &::after {
-         left: 11%;
+         left: 36%;
+
+         @media (max-width: $mobileSmall) {
+            left: 34%;
+         }
       }
    }
 
    &__content {
       width: 100%;
-   }   
+   }
 }
 
 .spollers {
@@ -44,6 +48,3 @@
    border: none;
 }
 
-.services__button-more.projects__button-more {
-   margin-top: 20px;
-}

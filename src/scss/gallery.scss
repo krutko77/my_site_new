@@ -1,6 +1,6 @@
 // gallery
 .gallery {
-   padding: 160px 0 90px;
+  padding: 160px 0 90px;
 
    @media (max-width: $tablet) {
       padding: 140px 0 70px;
@@ -13,12 +13,7 @@
    &__wrapper {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      border-bottom: 4px solid $mainColor;
-
-      @media (max-width: $tablet) {
-         border-width: 3px;
-      }
+      align-items: center;     
    }
 
    &__title {

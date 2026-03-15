@@ -10,7 +10,7 @@
    line-height: 120%;
    @include font(64px, 700, 98%);
    letter-spacing: -2px;
-   margin-bottom: 80px;
+   margin-bottom: 100px;
    position: relative;
 
    @media (max-width: $pc) {
@@ -18,11 +18,11 @@
    }
 
    @media (max-width: $tablet) {
-      margin-bottom: 50px;
+      margin-bottom: 70px;
    }
 
    @media (max-width: $mobileSmall) {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
    }
 
    &::after {
@@ -257,18 +257,19 @@ button:not(.swiper-button-prev, .swiper-button-next),
 .float-left {
    float: left;
    margin: 0 em(20, 20) em(10, 20) 0;
-
-   @media (max-width: $mobileSmall) {
-      margin: em(15, 20) 0;
-   }
 }
 
 .float-right {
    float: right;
    margin: 0 0 em(10, 20) em(20, 20);
+}
 
+
+.float-left,
+.float-right {
    @media (max-width: $mobileSmall) {
-      margin: em(15, 20) 0;
+      clear: both;
+      margin: 0 0 10px 0;
    }
 }
 
