@@ -14,14 +14,6 @@
 
    /*  background: url("../img/bg-prices-95.jpg") center / cover no-repeat fixed; */
 
-   &__wrapper {
-      border-bottom: 4px solid $mainColor;
-
-      @media (max-width: $tablet) {
-         border-width: 3px;
-      }
-   }
-
    &__inner {
       display: flex;
       flex-direction: column;
@@ -66,14 +58,14 @@
 
 // Дополнительно прописываем стили swiper
 .swiper {
-   padding: 50px 40px 50px;
+   padding: 50px 40px 10px;
 
    @media (max-width: $mobile) {
       max-width: 430px;
    }
 
    @media (max-width: $mobile) {
-      padding: 25px 0 30px;
+      padding: 25px 0 10px;
    }
 
    &__image-box {

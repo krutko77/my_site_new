@@ -1,32 +1,27 @@
 // brief
 .brief {
-   padding: 160px 0 40px;
+	padding: 160px 0 90px;
 
-   @media (max-width: $tablet) {
-      padding: 140px 0 25px;
-   }
+	@media (max-width: $tablet) {
+		padding: 140px 0 70px;
+	}
 
-   @media (max-width: $mobileSmall) {
-      padding: 100px 0 25px;
-   }
+	@media (max-width: $mobileSmall) {
+		padding: 100px 0 50px;
+	}
 
-   &__wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 4px solid $mainColor;
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-      @media (max-width: $tablet) {
-         border-width: 3px;
-      }
-   }
-
-   &__title {
+	&__title {
 		text-align: center;
 
 		&::after {
 			left: 31%;
-      }
+		}
 	}
 
 	&__text {
@@ -34,16 +29,16 @@
 	}
 
 	&__inner {
-		padding: 1em 1em 1.25em;	
-		border: 2px solid #FFCC0D;
+		padding: 1em 1em 1.25em;
+		border: 2px solid #ffcc0d;
 		border-radius: 5px;
 	}
 }
 
 .form-brief {
 	max-width: 550px;
-	
-	&__contact-block  {
+
+	&__contact-block {
 		margin-bottom: 15px;
 		position: relative;
 	}
@@ -65,30 +60,30 @@
 
 		@media (max-width: $pc) {
 			height: calc(35px + 10 * (100vw - 320px) / 940);
-		 }
-  }
-
-  &__input._form-error {
-	  border: 1.5px solid $errorColor;
-  }
-
-  &__error {
-	  margin-top: 3px;
-	  font-size: 16px;
-	  color: $errorColor;
-
-	  @media (max-width: $pc) {
-		font-size: calc(12px + 4*((100vw - 320px) / (1260 - 320)));
 		}
-	} 
-  
- 	textarea.form-brief__input {
-	  min-height: 100px;
-	  resize: vertical;
-	  padding: 10px 20px;	  
-  }
+	}
 
-  	&__input:focus {
+	&__input._form-error {
+		border: 1.5px solid $errorColor;
+	}
+
+	&__error {
+		margin-top: 3px;
+		font-size: 16px;
+		color: $errorColor;
+
+		@media (max-width: $pc) {
+			font-size: calc(12px + 4 * ((100vw - 320px) / (1260 - 320)));
+		}
+	}
+
+	textarea.form-brief__input {
+		min-height: 100px;
+		resize: vertical;
+		padding: 10px 20px;
+	}
+
+	&__input:focus {
 		border-color: $accentColor;
 	}
 
@@ -107,7 +102,7 @@
 		transform: translateX(-50%);
 		opacity: 0;
 		transition: opacity 0.3s ease;
-		
+
 		video {
 			width: 50px;
 			height: 50px;
@@ -115,7 +110,7 @@
 	}
 
 	&__body._sending .form-brief__video-box {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
@@ -125,7 +120,7 @@
 }
 
 .options-brief {
-	display: block;	
+	display: block;
 }
 
 .options-brief .options__item {
@@ -135,4 +130,3 @@
 .checkbox__link {
 	display: inline-block;
 }
-

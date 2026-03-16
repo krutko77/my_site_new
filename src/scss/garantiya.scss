@@ -1,23 +1,18 @@
 // contract
 .garantiya {
-   padding: 160px 0 40px;
+padding: 160px 0 90px;
 
    @media (max-width: $tablet) {
-      padding: 140px 0 25px;
+      padding: 140px 0 70px;
    }
 
    @media (max-width: $mobileSmall) {
-      padding: 100px 0 25px;
+      padding: 100px 0 50px;
    }
 
    &__wrapper {
       display: flex;
-      flex-direction: column;
-      border-bottom: 4px solid $mainColor;
-
-      @media (max-width: $tablet) {
-         border-width: 3px;
-      }
+      flex-direction: column;      
    }
 
    &__title {
