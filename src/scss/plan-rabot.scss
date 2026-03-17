@@ -42,4 +42,12 @@
          left: 25%;
       }
    }
+
+   &__title.technical-support {
+      text-align: center;
+
+      &::after {
+         left: 26%;
+      }
+   }
 }
