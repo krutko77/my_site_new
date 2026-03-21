@@ -24,3 +24,13 @@
       }
    }
 }
+
+// Прокрутка к нужному блоку при переходе по якорной ссылке
+// c другой страницы с учетом высоты фиксированного header 
+*[id]:before {
+   display: block;
+   content: " ";
+   margin-top: -130px;
+   height: 130px;
+   visibility: hidden;
+}

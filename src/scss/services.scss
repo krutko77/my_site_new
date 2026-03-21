@@ -1,4 +1,3 @@
-//skills
 .services {
    padding: 160px 0 90px;
 
@@ -108,6 +107,18 @@
 
 .border-none {
    border: none;
+}
+
+.services__bottom {
+   padding-top: 80px;
+
+   @media (max-width: $tablet) {
+      padding-top: 60px;
+   }
+
+   @media (max-width: $mobileSmall) {
+      padding-top: 40px;
+   }
 }
 
 .services__button-more.projects__button-more {
