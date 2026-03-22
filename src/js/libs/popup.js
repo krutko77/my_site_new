@@ -313,12 +313,34 @@ class Popup {
 				this.targetOpen.selector : this.targetOpen.selector.replace('.', '#')
 		}
 	}
-	_openToHash() {
+	/* _openToHash() {
 		let classInHash = document.querySelector(`.${window.location.hash.replace('#', '')}`) ? `.${window.location.hash.replace('#', '')}` :
 			document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` :
 				null;
 
 		const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ? document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) : document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace('.', "#")}"]`);
+
+		this.youTubeCode = buttons.getAttribute(this.options.youtubeAttribute) ?
+			buttons.getAttribute(this.options.youtubeAttribute) :
+			null;
+
+		if (buttons && classInHash) this.open(classInHash);
+	} */
+	_openToHash() {
+		// Проверяем существование options и attributeOpenButton
+		if (!this.options || !this.options.attributeOpenButton) return;
+
+		let classInHash = document.querySelector(`.${window.location.hash.replace('#', '')}`) ? `.${window.location.hash.replace('#', '')}` :
+			document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` :
+				null;
+
+		if (!classInHash) return;
+
+		const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ?
+			document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) :
+			document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace('.', "#")}"]`);
+
+		if (!buttons) return;
 
 		this.youTubeCode = buttons.getAttribute(this.options.youtubeAttribute) ?
 			buttons.getAttribute(this.options.youtubeAttribute) :
