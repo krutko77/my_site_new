@@ -4,21 +4,20 @@
 @import "base/variables.scss";
 @import "base/mixins";
 
-// Подключение шрифтов 
+// Подключение шрифтов
 
 //&display=swap - добавить при подключении через плагин
 
 // Подключить если есть локальные файлы шрифтов
 @import "fonts/fonts";
 
-// Подключение иконочных шрифтов 
+// Подключение иконочных шрифтов
 // Подключить если есть файл иконочного шрифта
 @import "fonts/icons";
 
+// Настройки шаблона
 
-// Настройки шаблона 
-
-// Шрифт по умолчанию 
+// Шрифт по умолчанию
 $fontFamily: "Roboto";
 $fontSize: rem(14); // где 14(px) - размер шрифта по умолчанию из макета
 
@@ -38,29 +37,28 @@ $maxWidthContainer: 1200;
 $containerPadding: 60;
 
 // Ширина срабатывания первого брейкпоинта
-$containerWidth: $maxWidthContainer+$containerPadding;
+$containerWidth: $maxWidthContainer + $containerPadding;
 
 // Брейк-поинты
 $pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
-$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
-$mobile: em(767.98); // Телефоны L
-$mobileSmall: em(479.98); // Телефоны S
+$tablet: em(992); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(768); // Телефоны L
+$mobileSmall: em(480); // Телефоны S
 
 // Тип адаптива:
 // 1 = отзывчивость (у контейнера нет брейкпоинтов),
 // 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
 $responsiveType: 2;
 
-
-// Обнуление 
+// Обнуление
 @import "base/null";
 
 // Стили тега BODY ===================================================================================
 
 body {
-   background: $mainBgColor;
-   height: 100%;
-  
+	background: $mainBgColor;
+	height: 100%;
+
 	// Скролл заблокирован
 	.lock & {
 		overflow: hidden;
@@ -75,7 +73,7 @@ body {
 .wrapper {
 	min-height: 100%;
 	display: flex;
-	flex-direction: column;   
+	flex-direction: column;
 	overflow: hidden;
 
 	// Прижимаем footer
@@ -115,13 +113,13 @@ body {
 		@if ($maxWidthContainer>0) {
 			max-width: rem($maxWidthContainer);
 			box-sizing: content-box;
-		} 
-      @if ($containerPadding>0) {
+		}
+		@if ($containerPadding>0) {
 			padding: 0 rem(math.div($containerPadding, 2));
-		}		
+		}
 		@media (max-width: $tablet) {
 			max-width: rem($maxWidthContainer);
-         @if ($containerPadding>0 and $maxWidthContainer>0) {
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
 				padding: 0 rem(math.div($containerPadding, 3));
 			}
 		}

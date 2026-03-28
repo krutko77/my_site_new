@@ -20,9 +20,25 @@
 								<div class="home__img-inner">
 									<div class="home__border-block" data-prlx-mouse data-prlx-cx=400 data-prlx-cy=400
 										data-prlx-dxr data-prlx-dyr>
+										<!-- <div class="home__img-wrapper" data-prlx-mouse data-prlx-cx=400 data-prlx-cy=400
+											data-prlx-dxr data-prlx-dyr>
+											<img class="home__img" fetchpriority="high" width="450" height="534"
+												src="@img/photo.jpg" alt="фото автора">
+										</div> -->
 										<div class="home__img-wrapper" data-prlx-mouse data-prlx-cx=400 data-prlx-cy=400
-												data-prlx-dxr data-prlx-dyr>
-											<!-- <img class="home__img" src="@img/photo.jpg" alt="фото автора"> -->
+											data-prlx-dxr data-prlx-dyr>
+											<picture>
+												<source type="image/webp" media="(max-width: 480px)"
+													srcset="@img/photo-480.jpg">
+												<source type="@image/webp" media="(max-width: 768px)"
+													srcset="@img/photo-768.jpg">
+												<source type="image/webp" media="(min-width: 769px)"
+													srcset="@img/photo-1920.jpg">
+												<img src="@img/photo-1920.jpg"
+													alt="Фото автора — Павел Крутько, веб-разработчик из Минска"
+													width="450" height="534" fetchpriority="high" loading="eager"
+													class="home__img">
+											</picture>
 										</div>
 									</div>
 									<div class="home__color-block" data-prlx-mouse data-prlx-cx=400 data-prlx-cy=400
@@ -166,7 +182,8 @@
 							сайты очень разные, как и люди, которые их заказывают. Поэтому точную стоимость и срок
 							изготовления
 							я смогу назвать только после того, как заказчик заполнит <a class="prices__link link"
-								href="/terminy-i-opredeleniya.html#anchor31">бриф</a> на разработку сайта (заполнить бриф
+								href="/terminy-i-opredeleniya.html#anchor31">бриф</a> на разработку сайта (заполнить
+							бриф
 							можно <a class="prices__link link" href="/brief.html">здесь</a>), и я
 							смогу определить необходимый объём работ.</p>
 						<p class="prices__text text margin-bottom-30">Закажите у меня разработку и я сделаю сайт, на
@@ -179,7 +196,7 @@
 						<p class="prices__text text margin-bottom-30">Благодаря этому вы получите больше заявок и
 							увеличите
 							продажи, так как что посетители не будут теряться на сайте и уходить к конкурентам.</p>
-						<p class="prices__text text margin-bottom-30">Более подробную информацию о том, как я веду  
+						<p class="prices__text text margin-bottom-30">Более подробную информацию о том, как я веду
 							разработку
 							и предоставляю гарантию на свою работу можно посмотреть в разделе "<a
 								class="prices__link link" href="/services.html">Услуги</a>". Стек технологий, которые я
@@ -329,8 +346,7 @@
 							</div>
 
 						</div>
-						<a id="show-more-button" class="projects__button-more button"
-							href="/gallery.html">Показать
+						<a id="show-more-button" class="projects__button-more button" href="/gallery.html">Показать
 							больше</a>
 					</div>
 				</div>
