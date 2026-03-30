@@ -9,7 +9,7 @@
    }
 
    @media (max-width: $tablet) {
-      padding: 120px 0 70px;
+      padding: 120px 0 50px;
    }
 
    @media (max-width: $mobileSmall) {
@@ -175,11 +175,11 @@
       }
 
       @media (max-width: $tablet) {
-         max-width: 350px;
+         max-width: 310px;
       }
 
       @media (max-width: $mobile) {
-         max-width: 300px;
+         max-width: 280px;
       }
 
       @media (max-width: $mobileSmall) {
