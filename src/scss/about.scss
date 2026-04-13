@@ -65,15 +65,19 @@
    &__img-box {
       overflow: hidden;
       width: 100%;
-      max-width: 600px;
-      aspect-ratio: 600/430;
    }
 
    &__img-box.about__img-box-1 {
       aspect-ratio: 400/300;
+      max-width: 400px;      
    }
 
    &__img-box.about__img-box-2 {
+      aspect-ratio: 600/430;
+      max-width: 600px;
+   }
+
+   &__img-box.about__img-box-3 {
       aspect-ratio: 500/706;
       max-width: 500px;
    }
